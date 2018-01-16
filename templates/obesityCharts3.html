@@ -1,0 +1,154 @@
+﻿{% extends 'base2.html' %}
+
+{% block title %}各年度肥胖條狀圖{% endblock %}
+{% block content %}
+    <div class="grid_3 grid_5">
+        <div class="col-md-12 graph-box1 clearfix">
+            <style>
+
+                svg {
+                    font: 10px sans-serif;
+                    padding: 10px;
+                }
+
+                .axis,
+                .frame {
+                    shape-rendering: crispEdges;
+                }
+
+                .axis line {
+                    stroke: #ddd;
+                }
+
+                .axis path {
+                    display: none;
+                }
+
+                .cell text {
+                    font-weight: bold;
+                    text-transform: capitalize;
+                }
+
+                .frame {
+                    fill: none;
+                    stroke: #aaa;
+                }
+
+                circle {
+                    fill-opacity: .7;
+                }
+
+            </style>
+            <div id="obestityall">
+
+                <script src="http://d3js.org/d3.v3.min.js"></script>
+            </div>
+            <script>
+                var csv="#obestityall";
+
+                var width = 960,
+                    size = 230,
+                    padding =20;
+
+                var x = d3.scale.linear()
+                    .range([padding / 2, size - padding / 2]);
+
+                var y = d3.scale.linear()
+                    .range([size - padding / 2, padding / 2]);
+
+                var xAxis = d3.svg.axis()
+                    .scale(x)
+                    .orient("bottom")
+                    .ticks(6);
+
+                var yAxis = d3.svg.axis()
+                    .scale(y)
+                    .orient("left")
+                    .ticks(6);
+
+                var color = d3.scale.category10();
+                {% load staticfiles %}
+                d3.csv("{% static "obestityall_1.csv" %}", function(error, data) {
+                    if (error) throw error;
+
+                    var domainByTrait = {},
+                        traits = d3.keys(data[0]).filter(function(d) { return d !== "year"; }),
+                        n = traits.length;
+
+                    traits.forEach(function(trait) {
+                        domainByTrait[trait] = d3.extent(data, function(d) { return +d[trait]; });
+                    });
+
+                    xAxis.tickSize(size * n);
+                    yAxis.tickSize(-size * n);
+
+                    var svg = d3.select("#obestityall").append("svg")
+                        .attr("width", size * n + padding)
+                        .attr("height", size * n + padding)
+                        .append("g")
+                        .attr("transform", "translate(" + padding + "," + padding / 2 + ")");
+
+                    svg.selectAll(".x.axis")
+                        .data(traits)
+                        .enter().append("g")
+                        .attr("class", "x axis")
+                        .attr("transform", function(d, i) { return "translate(" + (n - i - 1) * size + ",0)"; })
+                        .each(function(d) { x.domain(domainByTrait[d]); d3.select(this).call(xAxis); });
+
+                    svg.selectAll(".y.axis")
+                        .data(traits)
+                        .enter().append("g")
+                        .attr("class", "y axis")
+                        .attr("transform", function(d, i) { return "translate(0," + i * size + ")"; })
+                        .each(function(d) { y.domain(domainByTrait[d]); d3.select(this).call(yAxis); });
+
+                    var cell = svg.selectAll(".cell")
+                        .data(cross(traits, traits))
+                        .enter().append("g")
+                        .attr("class", "cell")
+                        .attr("transform", function(d) { return "translate(" + (n - d.i - 1) * size + "," + d.j * size + ")"; })
+                        .each(plot);
+
+                    // Titles for the diagonal.
+                    cell.filter(function(d) { return d.i === d.j; }).append("text")
+                        .attr("x", padding)
+                        .attr("y", padding)
+                        .attr("dy", ".71em")
+                        .text(function(d) { return d.x; });
+
+                    function plot(p) {
+                        var cell = d3.select(this);
+
+                        x.domain(domainByTrait[p.x]);
+                        y.domain(domainByTrait[p.y]);
+
+                        cell.append("rect")
+                            .attr("class", "frame")
+                            .attr("x", padding / 2)
+                            .attr("y", padding / 2)
+                            .attr("width", size - padding)
+                            .attr("height", size - padding);
+
+                        cell.selectAll("circle")
+                            .data(data)
+                            .enter().append("circle")
+                            .attr("cx", function(d) { return x(d[p.x]); })
+                            .attr("cy", function(d) { return y(d[p.y]); })
+                            .attr("r", 4)
+                            .style("fill", function(d) { return color(d.year); });
+                    }
+                });
+
+                function cross(a, b) {
+                    var c = [], n = a.length, m = b.length, i, j;
+                    for (i = -1; ++i < n;) for (j = -1; ++j < m;) c.push({x: a[i], i: i, y: b[j], j: j});
+                    return c;
+                }
+
+            </script>
+        </div>
+
+    <p>本資料圖示102 103 104 三年各縣市男女肥胖盛行率 運動消費支出 家庭年平均收入 與菸酒檳榔支出 四個因子之相關性</p>
+    <p>（金額均以千元為單位）102:藍 103:橘 104:綠</p>
+    </div>
+{% endblock %}

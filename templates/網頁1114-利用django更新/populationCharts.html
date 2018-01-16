@@ -1,0 +1,67 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}Chart1{% endblock %}
+{% block content %}
+<script src="../static/js/Chart.js"></script>
+<div class="graph-grid">
+                    <div class="col-md-6 graph-1">
+                        <div class="grid-1">
+                            <h4>Bar</h4>
+                            <canvas id="bar1" height="300" width="500" style="width: 500px; height: 300px;"></canvas>
+                            <canvas  height="30" width="500" ></canvas>
+                            <p >BarBarBarBarBarBar</p>
+                            <p >BarBarBarBarBarBar</p>
+                            <p >BarBarBarBarBarBar</p>
+                            <script>
+                                var barChartData = {
+                                    labels : ["Mon","Tue","Wed","Thu","Fri","Sat","Mon","Tue","Wed","Thu"],
+                                    datasets : [
+                                        {
+                                            fillColor : "#FBB03B",
+                                            strokeColor : "#FBB03B",
+                                            data : [25,40,50,65,55,30,20,10,6,4]
+                                        },
+                                        {
+                                            fillColor : "#FBB03B",
+                                            strokeColor : "#FBB03B",
+                                            data : [30,45,55,70,40,25,15,8,5,2]
+                                        }
+                                    ]
+
+                                };
+                                new Chart(document.getElementById("bar1").getContext("2d")).Bar(barChartData);
+								
+                            </script>
+                        </div>
+                    </div>
+                    <div class="col-md-6 graph-2">
+                        <div class="grid-1">
+                            <h4>Line</h4>
+                            <canvas id="line1" height="300" width="500" style="width: 500px; height: 300px;"></canvas>
+                            <canvas  height="30" width="500" ></canvas>
+                            <p >linelineline</p>
+                            <p >linelineline</p>
+                            <p >linelineline</p>
+                            <script>
+                                var lineChartData = {
+                                    labels : ["Mon","Tue","Wed","Thu","Fri","Sat","Mon"],
+                                    datasets : [
+                                        {
+                                            fillColor : "#fff",
+                                            strokeColor : "#1ABC9C",
+                                            pointColor : "#1ABC9C",
+                                            pointStrokeColor : "#1ABC9C",
+                                            data : [20,35,45,30,10,65,40]
+                                        }
+                                    ]
+
+                                };
+                                new Chart(document.getElementById("line1").getContext("2d")).Line(lineChartData);
+                            </script>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+
+          
+{% endblock %}

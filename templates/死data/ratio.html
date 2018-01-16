@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>chart created with amCharts | amCharts</title>
+		<meta name="description" content="chart created using amCharts live editor" />
+		
+		<!-- amCharts javascript sources -->
+		<script src="https://www.amcharts.com/lib/3/amcharts.js" type="text/javascript"></script>
+		<script src="https://www.amcharts.com/lib/3/serial.js" type="text/javascript"></script>
+<meta charset="utf-8">
+<DIV>
+    扶養比:每100個工作年齡人口（15至64歲人口）所需負擔依賴人口（即14歲以下幼年人口及65歲以上老年人口），也稱為依賴人口指數，扶養比愈高，負擔也愈重。
+</DIV>
+    老化指數:為衡量一個國家/地區人口老化程度之指標，即每100個65歲以上人口對14歲以下人口之比，指數越高，代表高老齡化情況越嚴重。
+<DIV>
+
+</DIV>
+
+		<!-- amCharts javascript code -->
+		<script type="text/javascript">
+			AmCharts.makeChart("chartdiv",
+				{
+					"type": "serial",
+					"categoryField": "county",
+					"colors": [
+						"#FFBB00",
+						"#5599FF"
+					],
+					"startDuration": 1,
+					"theme": "default",
+					"categoryAxis": {
+						"gridPosition": "start"
+					},
+					"trendLines": [],
+					"graphs": [
+						{
+							"balloonText": "[[title]] of [[category]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-1",
+							"labelPosition": "inside",
+							"title": "扶養比",
+							"type": "column",
+							"valueField": "allratio"
+						},
+						{
+							"accessibleLabel": "",
+							"balloonText": "",
+							"bullet": "round",
+							"id": "AmGraph-2",
+							"labelText": "",
+							"lineThickness": 2,
+							"tabIndex": 1,
+							"title": "老化指數",
+							"valueAxis": "ValueAxis-2",
+							"valueField": "oldratio"
+						}
+					],
+					"guides": [],
+					"valueAxes": [
+						{
+							"id": "ValueAxis-1",
+							"title": "Axis title"
+						},
+						{
+							"id": "ValueAxis-2",
+							"position": "right",
+							"gridAlpha": 0,
+							"title": "Axis title"
+						}
+					],
+					"allLabels": [],
+					"balloon": {},
+					"legend": {
+						"enabled": true,
+						"useGraphSettings": true
+					},
+					"titles": [
+						{
+							"id": "Title-1",
+							"size": 15,
+							"text": "台灣106各縣市扶養比及老化指數"
+						}
+					],
+					"dataProvider": [
+						{
+							"allratio": "38.01299775",
+							"oldratio": "142.3967815",
+							"county": "南投縣"
+						},
+						{
+							"allratio": "38.74915688",
+							"oldratio": "97.08749297",
+							"county": "嘉義市"
+						},
+						{
+							"allratio": "39.28756812",
+							"oldratio": "180.7782406",
+							"county": "嘉義縣"
+						},
+						{
+							"allratio": "33.61677422",
+							"oldratio": "132.7510168",
+							"county": "基隆市"
+						},
+						{
+							"allratio": "37.75054602",
+							"oldratio": "122.259642",
+							"county": "宜蘭縣"
+						},
+						{
+							"allratio": "36.21480975",
+							"oldratio": "139.4733399",
+							"county": "屏東縣"
+						},
+						{
+							"allratio": "38.75600375",
+							"oldratio": "107.3871557",
+							"county": "彰化縣"
+						},
+						{
+							"allratio": "32.90422633",
+							"oldratio": "95.77335533",
+							"county": "新北市"
+						},
+						{
+							"allratio": "40.07886333",
+							"oldratio": "64.70172531",
+							"county": "新竹市"
+						},
+						{
+							"allratio": "39.88817091",
+							"oldratio": "71.19011096",
+							"county": "新竹縣"
+						},
+						{
+							"allratio": "34.66489829",
+							"oldratio": "68.76571418",
+							"county": "桃園市"
+						},
+						{
+							"allratio": "35.68793854",
+							"oldratio": "138.8756747",
+							"county": "澎湖縣"
+						},
+						{
+							"allratio": "34.95096824",
+							"oldratio": "75.91634297",
+							"county": "台中市"
+						},
+						{
+							"allratio": "42.38990473",
+							"oldratio": "114.9160344",
+							"county": "台北市"
+						},
+						{
+							"allratio": "36.10417574",
+							"oldratio": "112.4978076",
+							"county": "台南市"
+						},
+						{
+							"allratio": "37.86823506",
+							"oldratio": "124.7876497",
+							"county": "台東縣"
+						},
+						{
+							"allratio": "37.58671181",
+							"oldratio": "121.431711",
+							"county": "花蓮縣"
+						},
+						{
+							"allratio": "39.74686964",
+							"oldratio": "112.8733666",
+							"county": "苗栗縣"
+						},
+						{
+							"allratio": "29.59739068",
+							"oldratio": "83.50606673",
+							"county": "連江縣"
+						},
+						{
+							"allratio": "27.98876574",
+							"oldratio": "119.9450456",
+							"county": "金門縣"
+						},
+						{
+							"allratio": "41.45216108",
+							"oldratio": "143.8607809",
+							"county": "雲林縣"
+						},
+						{
+							"allratio": "35.2422387",
+							"oldratio": "112.4045871",
+							"county": "高雄市"
+						},
+						{
+							"county": ""
+						}
+					]
+				}
+			);
+		</script>
+	</head>
+	<body>
+		<div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFFF;" ></div>
+	</body>
+</html>

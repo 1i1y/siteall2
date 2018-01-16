@@ -1,0 +1,143 @@
+{%  load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MAP</title>
+    <meta name="description" content="Taiwan Map" />
+    <meta charset="utf-8">
+</head>
+<style>
+body{
+    width: 900px;
+    margin: 50px auto;
+}
+path {  stroke: #fff; }
+path:hover {  opacity:0.9; }
+rect:hover {  fill:blue; }
+.axis {  font: 10px sans-serif; }
+.legend tr{    border-bottom:1px solid grey; }
+.legend tr:first-child{    border-top:1px solid grey; }
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {  display: none; }
+.legend{
+    margin-bottom:76px;
+    display:inline-block;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+.legend td{
+    padding:4px 5px;
+    vertical-align:bottom;
+}
+.legendFreq, .legendPerc{
+    align:right;
+    width:50px;
+}
+
+</style>
+<body>
+<style type=text/css>
+/*全部設定字體*/
+body { font-family: 'Noto Sans TC', sans-serif;  }
+</style>
+
+<script>
+    @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css );
+</script>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="fa fa-bars"></span></a></li>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+<script>
+    var width = 1024, height = 728;
+     var density = {
+    "臺北市": 5000.00,
+    "嘉義市": 4512.66,
+    "新竹市": 4151.27,
+    "基隆市": 2809.27,
+    "新北市": 1932.91,
+    "桃園市": 1692.09,
+    "臺中市": 1229.62,
+    "彰化縣": 1201.65,
+    "高雄市": 942.97,
+    "臺南市": 860.02,
+    "金門縣": 847.16,
+    "澎湖縣": 802.83,
+    "雲林縣": 545.57,
+    "連江縣": 435.21,
+    "新竹縣": 376.86,
+    "苗栗縣": 311.49,
+    "屏東縣": 305.03,
+    "嘉義縣": 275.18,
+    "宜蘭縣": 213.89,
+    "南投縣": 125.10,
+    "花蓮縣": 71.96,
+    "臺東縣": 63.75
+  };
+    var svg = d3.select('body')
+        .append('svg')
+        .attr({
+            width: width,
+            height: height
+        });
+    var url = "{% static "medicalProject\json\top1.json" %}";
+    d3.json(url, function (topodata) {
+        var path = d3.geo.path();
+        var color = d3.scale.linear().domain([0,500]).range(["#000","#f00"]);
+
+      //  var fisheye = d3.fisheye();
+        var features = topojson.feature(topodata, topodata.objects["countries"]).features;
+        for(idx=features.length - 1;idx>=0;idx--)
+            features[idx].density = density[features[idx].properties.COUNTYNAME];
+        svg.selectAll('path')
+            .data(features)
+            .enter()
+            .append('path')
+            .attr('d', path)
+            .style({
+                fill: function (d) { return color(d.density); },
+                stroke: 'black'
+            });
+       function update() {
+                         d3.select("svg")
+                           .selectAll("path")
+                           .attr({
+                                     "d": path,
+                                     "fill": function (d) { return color(d.density); }
+                           }).on("mouseover", function(d) {
+                                      $("#name").text(d.properties.COUNTYNAME);
+                                       $("#density").text(d.density);
+
+                                });
+       update();
+    }
+    });
+</script>
+</body>
+</html>

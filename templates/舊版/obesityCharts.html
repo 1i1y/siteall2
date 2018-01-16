@@ -1,0 +1,189 @@
+﻿{% extends 'base2.html' %}
+
+{% block title %}各年度肥胖條狀圖{% endblock %}
+{% block content %}
+<div class="grid_3 grid_5">
+                            <div class="but_list">
+                                <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                                    <ul id="myTab" class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active"><a href="#chart1" id="home-tab" role="tab" data-toggle="tab" aria-controls="1" aria-expanded="true">102</a></li>
+                                        <li role="presentation"><a href="#chart2" role="tab" id="profile-tab" data-toggle="tab" aria-controls="2" aria-expanded="true">103</a></li>
+                                        <li role="presentation"><a href="#chart3" role="tab" id="profile-tab" data-toggle="tab" aria-controls="3" aria-expanded="true">104</a></li>
+                                        <li role="presentation"><a href="#chart4" role="tab" id="profile-tab" data-toggle="tab" aria-controls="4" aria-expanded="true">102~104</a></li>
+                                    </ul>
+                                    <div id="myTabContent" class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade in active" id="chart1" aria-labelledby="profile-tab">
+                                            <div class="col-md-12 graph-box1 clearfix">
+                                                <h4>102年各縣市男女肥胖盛行率</h4>
+
+                                                    <style>
+
+                                                        .axis .domain {
+                                                            display: none;
+                                                        }
+                                                    </style>
+                                                    <div>
+                                                        <svg id="svg_102" width="1080" height="500" ></svg>
+                                                        <script src="https://d3js.org/d3.v4.min.js"></script>
+
+														
+														
+                                                    </div>
+                                                </div>
+                                                <canvas height="20" width="1080" style="width:1080px; height: 20px;"></canvas>
+                                                <div align="middle">
+                                                    <h3>本資料圖示102年各縣市男女肥胖盛行率 以BMI指數>24 視為肥胖</h3>
+
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade " id="chart2" aria-labelledby="profile-tab">
+                                            <div class="col-md-12 graph-box1 clearfix">
+                                                <h4>103年各縣市男女肥胖盛行率</h4>
+                                                  <style>
+
+                                                        .axis .domain {
+                                                            display: none;
+                                                        }
+                                                    </style>
+                                                    <div>
+                                                        <svg id="svg_103" width="1080" height="500" ></svg>
+                                                        <script src="https://d3js.org/d3.v4.min.js"></script>
+   
+                                                    </div>
+                                                </div>
+                                                <canvas height="20" width="1080" style="width:1080px; height: 20px;"></canvas>
+                                                <div align="middle">
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="chart3" aria-labelledby="profile-tab">
+                                            <div class="col-md-12 graph-box1 clearfix">
+                                                <h4>104年各縣市男女肥胖盛行率</h4>
+                                                  <style>
+
+                                                        .axis .domain {
+                                                            display: none;
+                                                        }
+                                                    </style>
+                                                    <div>
+                                                        <svg id="svg_104" width="1080" height="500" ></svg>
+                                                        <script src="https://d3js.org/d3.v4.min.js"></script>
+                                             
+
+                                                    </div>
+
+                                                </div>
+
+                                                <canvas height="20" width="1080" style="width:1080px; height: 20px;"></canvas>
+
+                                                <div align="middle">
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade " id="chart4" aria-labelledby="profile-tab">
+                                            <div class="col-md-12 graph-box1 clearfix">
+                                                <div class="grid-2">
+                                                    <h4>102~104</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 graph-box1 clearfix">
+                            </div>
+                            <!------------------------------------->
+                            <div class="graph-box">
+                                <div class="clearfix"></div>
+                            </div>
+                        </div> </div><script >//產生長條圖語法
+function barChart(year,endyear){ 							var csv="#svg_"+year;
+                                                            var svg = d3.select(csv),
+                                                                margin = {top: 20, right: 20, bottom: 30, left: 40},
+                                                                width = +svg.attr("width") - margin.left - margin.right,
+                                                                height = +svg.attr("height") - margin.top - margin.bottom,
+                                                                g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+                                                            var x0 = d3.scaleBand()
+                                                                .rangeRound([0, width])
+                                                                .paddingInner(0.1);
+
+                                                            var x1 = d3.scaleBand()
+                                                                .padding(0.05);
+
+                                                            var y = d3.scaleLinear()
+                                                                .rangeRound([height, 0]);
+
+                                                            var z = d3.scaleOrdinal()
+                                                                .range(["#009FCC", "#FFCC22", "#00AA55", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+                                                            {% load staticfiles %}
+
+                                                            d3.csv("{% static "csv" %}"+"/"+year+"bar.csv", function(d,i,columns) {
+                                                                    for (var i = 1, n = columns.length; i < n; ++i) d[columns[i]] = +d[columns[i]];
+                                                                    return d;
+                                                                },
+                                                                function(error, data) {
+                                                                    if (error) throw error;
+                                                                    var keys = data.columns.slice(1);
+
+                                                                    x0.domain(data.map(function(d) { return d.county; }));
+                                                                    x1.domain(keys).rangeRound([0, x0.bandwidth()]);
+                                                                    y.domain([0, d3.max(data, function(d) { return d3.max(keys, function(key) { return d[key]; }); })]).nice();
+
+                                                                    g.append("g")
+                                                                        .selectAll("g")
+                                                                        .data(data)
+                                                                        .enter().append("g")
+                                                                        .attr("transform", function(d) { return "translate(" + x0(d.county) + ",0)"; })
+                                                                        .selectAll("rect")
+                                                                        .data(function(d) { return keys.map(function(key) { return {key: key, value: d[key]}; }); })
+                                                                        .enter().append("rect")
+                                                                        .attr("x", function(d) { return x1(d.key); })
+                                                                        .attr("y", function(d) { return y(d.value); })
+                                                                        .attr("width", x1.bandwidth())
+                                                                        .attr("height", function(d) { return height - y(d.value); })
+                                                                        .attr("fill", function(d) { return z(d.key); });
+
+
+                                                                    g.append("g")
+                                                                        .attr("class", "axis")
+                                                                        .attr("transform", "translate(0," + height + ")")
+                                                                        .call(d3.axisBottom(x0));
+
+                                                                    g.append("g")
+                                                                        .attr("class", "axis")
+                                                                        .call(d3.axisLeft(y).ticks(null, "s"))
+                                                                        .append("text")
+                                                                        .attr("x", 2)
+                                                                        .attr("y", y(y.ticks().pop()) + 0.5)
+                                                                        .attr("dy", "0.32em")
+                                                                        .attr("fill", "#000")
+                                                                        .attr("font-weight", "bold")
+                                                                        .attr("text-anchor", "start")
+                                                                        .text("102 obesity prevalence(%)");
+
+                                                                    var legend = g.append("g")
+                                                                        .attr("font-family", "Noto Sans TC")
+                                                                        .attr("font-size", 10)
+                                                                        .attr("text-anchor", "end")
+                                                                        .selectAll("g")
+                                                                        .data(keys.slice().reverse())
+                                                                        .enter().append("g")
+                                                                        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+                                                                    legend.append("rect")
+                                                                        .attr("x", width - 19)
+                                                                        .attr("width", 19)
+                                                                        .attr("height", 19)
+                                                                        .attr("fill", z);
+
+                                                                    legend.append("text")
+                                                                        .attr("x", width - 24)
+                                                                        .attr("y", 9.5)
+                                                                        .attr("dy", "0.32em")
+                                                                        .text(function(d) { return d; });
+                                                                });if (year<=endyear) 
+																{barChart(year+1,endyear)};
+																}
+																
+																barChart(102,104);</script>
+{% endblock %}

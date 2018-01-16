@@ -1,0 +1,159 @@
+﻿{% extends 'base2.html' %}
+
+{% block title %}Maps{% endblock %}
+{% block content %}
+    <!--map的js-->
+    <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script>
+    <script type="text/javascript" src="../static/js/gmaps.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/examples.css" />
+    <script src="../static/js/bootstrap.min.js"> </script>
+
+    <!--chart的js-->
+    <script src="../static/js/jquery.min.js"> </script>
+    <script src="../static/js/Chart.js"></script>
+
+    <!--grid-->
+    <div class="map-grid">
+
+        <div class="col-md-6 map-1 content-top-2">
+            <!--白色邊框-->
+            <div class="span11">
+                <div id="map1"></div>
+            </div>
+
+        </div>
+        <div class="col-md-6 map-1 ">
+            <div class="content-top-1">
+                <div class="span11">
+                    <div class="map-grid">
+                        <FORM Name="myForm" >
+
+                            城市
+                            :
+							
+                            <SELECT Name="color" OnChange="renew(this.selectedIndex-1);" id="city>
+								<OPTION Value="請選擇城市">請選擇城市
+                                {% for city in citys %}
+                                <OPTION Value={{ city.city }}>{{ city.city }}
+
+                                {% endfor %}
+                            </Select>
+
+                            <BR>
+                            鄉/鎮/市/區
+                            :
+                            <SELECT Name="fruit" OnChange="renew2();" id="area"> 
+                                <option value=0>請先選擇城市</option>
+
+                            </Select>
+							<BR>
+							里:
+							<SELECT Name="town" id="town" action="GET">
+                                <option value=0>請先選擇鄉/鎮/市/區</option>
+
+                            </Select>
+							<input type="submit" value="提交">
+                        </Form>
+                        <script>
+							var citys={{citys|safe}};
+							var areas={{areas|safe}};
+							var towns={{towns|safe}};
+							
+                            var department=new Array();
+							var sel3=new Array();
+							areas.forEach(function(s){var temp2=[];towns.forEach(function(d){
+							
+							if ((s.city+s.area)==(d.city+d.area)){var temp={};temp['town']=d.town;temp['value']=d.value;temp2.push(temp);} 
+							}
+							);sel3.push(temp2);
+							});
+							
+							// 工科系
+							
+							var zz=0;
+							citys.forEach(function(s){var temp=[];areas.forEach(function(d){
+							if (s.city==d.city){var temp2={};temp2['area']=d.area;temp2['value']=zz++;temp.push(temp2);}
+							}
+							);department.push(temp);
+							});
+							
+						   function renew2(){ var $cSel = $('select[name="fruit"]')
+						   index=$cSel.val();
+						   document.myForm.town.options[0]=new Option("請選擇里","請選擇里")
+                                for(var i=1;i<sel3[index].length;i++)
+                                    document.myForm.town.options[i]=new Option(sel3[index][i-1].town, sel3[index][i-1].value);// 設定新選項
+                                document.myForm.town.options[i].value=sel3[index][i-1].value	;
+                                document.myForm.town.length=sel3[index].length+1;	// 刪除多餘的選項
+                            }
+							
+						
+                            function renew(index){
+							document.myForm.fruit.options[0]=new Option("請選擇鄉/鎮/市/區","請選擇鄉/鎮/市/區")
+                                for(var i=1;i<department[index].length;i++)
+                                    document.myForm.fruit.options[i]=new Option(department[index][i-1].area, department[index][i-1].value);// 設定新選項
+                                document.myForm.fruit.options[i].value=department[index][i-1].value	;
+                                document.myForm.fruit.length=department[index].length+1;	// 刪除多餘的選項
+                            }
+                        </script>
+                        <script>
+                            $(function(){
+
+                                //得到下拉式目前選取的值 (value)
+
+                                //get the text value of a selected option
+
+                                var $cSel = $('select[name="town"]'); //指定要處理的特定元素物件名稱
+
+                                $cSel.on('change', function() {
+
+                                    test($cSel.val())
+
+                                });
+
+                            });
+
+
+                        </SCRIPT>
+                    </div>
+                    <div class="clearfix"> </div>
+                    <div class="span11">
+                        <h1>圖表</h1>
+                        <canvas  height="30" width="500" ></canvas>
+                        <canvas id="bar1" height="300" width="500" style="width: 500px; height: 300px;"></canvas>
+                        <script>
+                            var barChartData = {
+                                labels : ["Mon","Tue","Wed","Thu","Fri","Sat","Mon","Tue","Wed","Thu"],
+                                datasets : [
+                                    {
+                                        fillColor : "#FBB03B",
+                                        strokeColor : "#FBB03B",
+                                        data : [25,40,50,65,55,30,20,10,6,4]
+                                    },
+                                    {
+                                        fillColor : "#FBB03B",
+                                        strokeColor : "#FBB03B",
+                                        data : [30,45,55,70,40,25,15,8,5,2]
+                                    }
+                                ]
+                            };
+                            new Chart(document.getElementById("bar1").getContext("2d")).Bar(barChartData);
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="clearfix"> </div>
+        </div>
+		    <script>;
+                var lat={{lat|safe}};
+                var lng={{lng|safe}};
+				
+					
+            </script>
+            <script src="../static/js/map.js"></script>
+			<script>1
+
+</script>
+			
+{% endblock %}

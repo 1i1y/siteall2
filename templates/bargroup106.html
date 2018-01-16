@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>chart created with amCharts | amCharts</title>
+		<meta name="description" content="chart created using amCharts live editor" />
+		
+		<!-- amCharts javascript sources -->
+		<script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+		<script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
+		<script type="text/javascript" src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+		
+
+		<!-- amCharts javascript code -->
+		<script type="text/javascript">
+			AmCharts.makeChart("chartdiv",
+				{
+					"type": "serial",
+					"categoryField": "county",
+					"angle": 30,
+					"depth3D": 30,
+					"startDuration": 1,
+					"theme": "light",
+					"categoryAxis": {
+						"gridPosition": "start"
+					},
+					"trendLines": [],
+					"graphs": [
+						{
+							"balloonText": "[[title]] of [[category]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-1",
+							"title": "<15y",
+							"type": "column",
+							"valueField": "<15y"
+						},
+						{
+							"balloonText": "[[title]] of [[category]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-2",
+							"title": "15-64y",
+							"type": "column",
+							"valueField": "15-64y"
+						},
+						{
+							"balloonText": "[[title]] of [[category]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-3",
+							"title": ">65y",
+							"type": "column",
+							"valueField": ">65y"
+						}
+					],
+					"guides": [],
+					"valueAxes": [
+						{
+							"id": "ValueAxis-1",
+							"stackType": "100%",
+							//"title": "Axis title"
+						}
+					],
+					"allLabels": [],
+					"balloon": {},
+					"legend": {
+						"enabled": true,
+						"useGraphSettings": true
+					},
+					"titles": [
+						{
+							"id": "Title-1",
+							"size": 15,
+							"text": "106年台灣各縣市人口結構"
+						}
+					],
+					"dataProvider": [
+						{
+							"county": "嘉義市",
+							"<15y": "0.141700975",
+							"15-64y": "0.7207251",
+							">65y": "0.137573924"
+						},
+						{
+							"county": "嘉義縣",
+							"<15y": "0.100456801",
+							"15-64y": "0.717939162",
+							">65y": "0.181604037"
+						},
+						{
+							"county": "基隆市",
+							"<15y": "0.108094468",
+							"15-64y": "0.748409027",
+							">65y": "0.143496505"
+						},
+						{
+							"county": "宜蘭縣",
+							"<15y": "0.123301766",
+							"15-64y": "0.725949936",
+							">65y": "0.150748298"
+						},
+						{
+							"county": "屏東縣",
+							"<15y": "0.111020891",
+							"15-64y": "0.734134564",
+							">65y": "0.154844545"
+						},
+						{
+							"county": "彰化縣",
+							"<15y": "0.134680696",
+							"15-64y": "0.720689536",
+							">65y": "0.144629768"
+						},
+						{
+							"county": "新北市",
+							"<15y": "0.126461785",
+							"15-64y": "0.75242152",
+							">65y": "0.121116695"
+						},
+						{
+							"county": "新竹市",
+							"<15y": "0.173717927",
+							"15-64y": "0.713883577",
+							">65y": "0.112398496"
+						},
+						{
+							"county": "新竹縣",
+							"<15y": "0.166565271",
+							"15-64y": "0.714856727",
+							">65y": "0.118578002"
+						},
+						{
+							"county": "桃園市",
+							"<15y": "0.152528606",
+							"15-64y": "0.742584009",
+							">65y": "0.104887385"
+						},
+						{
+							"county": "澎湖縣",
+							"<15y": "0.110105317",
+							"15-64y": "0.736985181",
+							">65y": "0.152909502"
+						},
+						{
+							"county": "台中市",
+							"<15y": "0.147223459",
+							"15-64y": "0.741009874",
+							">65y": "0.111766666"
+						},
+						{
+							"county": "台北市",
+							"<15y": "0.138520619",
+							"15-64y": "0.702296979",
+							">65y": "0.159182402"
+						},
+						{
+							"county": "台南市",
+							"<15y": "0.12483361",
+							"15-64y": "0.734731315",
+							">65y": "0.140435075"
+						},
+						{
+							"county": "台東縣",
+							"<15y": "0.12219077",
+							"15-64y": "0.72533024",
+							">65y": "0.15247899"
+						},
+						{
+							"county": "花蓮縣",
+							"<15y": "0.123372404",
+							"15-64y": "0.726814375",
+							">65y": "0.149813221"
+						},
+						{
+							"county": "苗栗縣",
+							"<15y": "0.133610169",
+							"15-64y": "0.715579535",
+							">65y": "0.150810296"
+						},
+						{
+							"county": "連江縣",
+							"<15y": "0.124453393",
+							"15-64y": "0.771620474",
+							">65y": "0.103926133"
+						},
+						{
+							"county": "金門縣",
+							"<15y": "0.099425484",
+							"15-64y": "0.781318575",
+							">65y": "0.119255942"
+						},
+						{
+							"county": "雲林縣",
+							"<15y": "0.120169881",
+							"15-64y": "0.706952791",
+							">65y": "0.172877329"
+						},
+						{
+							"county": "高雄市",
+							"<15y": "0.122683807",
+							"15-64y": "0.739413965",
+							">65y": "0.137902227"
+						},
+						{
+							"county": "南投縣",
+							"<15y": "0.11362",
+							"15-64y": "0.72456",
+							">65y": "0.1618"
+						}
+					]
+				}
+			);
+		</script>
+	</head>
+	<body>
+		<div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFFF;" ></div>
+	</body>
+</html>

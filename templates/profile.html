@@ -1,0 +1,403 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+{% block content %}
+    <style>
+        .container {
+            position: relative;
+        }
+
+        .image {
+            opacity: 1;
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: .5s ease;
+            backface-visibility: hidden;
+        }
+
+        .middle {
+            transition: .5s ease;
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%)
+        }
+
+        .container:hover .image {
+            opacity: 0.3;
+        }
+
+        .container:hover .middle {
+            opacity: 1;
+        }
+
+        .text {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            padding: 16px 32px;
+        }
+    </style>
+
+    <div class="blank-page">
+       <div class="profile-fo">
+            <div class="container" >
+
+                    <div >
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal1"  style="position:relative;" >
+                            <img src="../static/images/01.gif" width="300" height="500"/>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal2"  style="position:relative;">
+                            <img src="../static/images/02.gif"  width="300" height="500"/>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal3"  style="position:relative;">
+                            <img src="../static/images/03.gif"  width="300" height="500"/>
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal4"  style="position:relative;  " >
+                            <img src="../static/images/04.gif" width="300" height="500"/>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal5"  style="position:relative;  ">
+                            <img src="../static/images/05.gif" width="300" height="500"/>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal6"  style="position:relative;  " >
+                            <img src="../static/images/06.gif" width="300" height="500"/>
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal7"  style="position:relative;  ">
+                            <img src="../static/images/07.gif" width="300" height="500"/>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal8"  style="position:relative;  " >
+                            <img src="../static/images/08.gif" width="300" height="500"/>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal9"  style="position:relative;  "onclick="document.getElementById('d1').style.display='block'" >
+                            <img src="../static/images/09.gif" width="300" height="500"/>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="myModal1" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h2 class="modal-title">沈學斌</h2>
+                            </div>
+                            <div id="1" data-id="沈學斌">
+                                <div class="inner">
+                                    <div class="picture">
+                                        <div class="masked">
+                                        </div>
+                                    </div>
+                                    <div class="brief">
+                                        <div class="title">
+                                            <img src="../static/images/01.jpg" width="300" height="500"/>
+                                            <h3>執行長</h3>
+                                            <h3>CEO</h3>
+                                        </div>
+                                        <div class="name" itemprop="name">沈學斌</div>
+                                        <div class="summary" itemprop="description">
+                                            <p>
+                                                任何事情，我說了算!
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+
+                <div class="modal fade" id="myModal2" tabindex="2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h2 class="modal-title">翁偉倬</h2>
+                            </div>
+                            <div id="2" data-id="翁偉倬">
+                                <div class="inner">
+                                    <div class="picture">
+                                        <div class="masked">
+                                        </div>
+                                    </div>
+                                    <div class="brief">
+                                        <div class="title">
+                                            <img src="../static/images/02.jpg" width="300" height="500"/>
+                                            <h3>前端工程師</h3>
+                                            <h3>Front-End Engineer</h3>
+                                        </div>
+                                        <div class="name" itemprop="name">翁偉倬</div>
+                                        <div class="summary" itemprop="description">
+                                            <p>
+                                                和電腦溝通，呈現最好的視覺畫面，是我的強項!
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+
+                <div class="modal fade" id="myModal3" tabindex="3" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h2 class="modal-title">陳亭宇</h2>
+                            </div>
+                            <div id="3" data-id="陳亭宇">
+                                <div class="inner">
+                                    <div class="picture">
+                                        <div class="masked">
+                                        </div>
+                                    </div>
+                                    <div class="brief">
+                                        <div class="title">
+                                            <img src="../static/images/03.jpg" width="300" height="500"/>
+                                            <h3>資料庫專家</h3>
+                                            <h3>Database Expert</h3>
+                                        </div>
+                                        <div class="name" itemprop="name">陳亭宇</div>
+                                        <div class="summary" itemprop="description">
+                                            <p>
+                                                跟大數據有關的問題，找我就對了!
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+
+                <div class="modal fade" id="myModal4" tabindex="4" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h2 class="modal-title">張聿廷</h2>
+                            </div>
+                            <div id="4" data-id="張聿廷">
+                                <div class="inner">
+                                    <div class="picture">
+                                        <div class="masked">
+                                        </div>
+                                    </div>
+                                    <div class="brief">
+                                        <div class="title">
+                                            <img src="../static/images/04.jpg" width="300" height="500"/>
+                                            <h3>資料分析高手</h3>
+                                            <h3>Data Analysis Master</h3>
+                                        </div>
+                                        <div class="name" itemprop="name">張聿廷</div>
+                                        <div class="summary" itemprop="description">
+                                            <p>
+                                                不管什麼樣的資料，在我看來都是有意義的!
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+
+                <div class="modal fade" id="myModal5" tabindex="5" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h2 class="modal-title">蔡智仁</h2>
+                            </div>
+                            <div id="5" data-id="蔡智仁">
+                                <div class="inner">
+                                    <div class="picture">
+                                        <div class="masked">
+                                        </div>
+                                    </div>
+                                    <div class="brief">
+                                        <div class="title">
+                                            <img src="../static/images/05.jpg" width="300" height="500"/>
+                                            <h3>全端神童</h3>
+                                            <h3>Full Stack Genius</h3>
+                                        </div>
+                                        <div class="name" itemprop="name">蔡智仁</div>
+                                        <div class="summary" itemprop="description">
+                                            <p>
+                                                管你是前端還是後端，在我手上沒有超過三小時的問題!
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+
+                <div class="modal fade" id="myModal6" tabindex="6" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h2 class="modal-title">趙楠楠</h2>
+                            </div>
+                            <div id="6" data-id="趙楠楠">
+                                <div class="inner">
+                                    <div class="picture">
+                                        <div class="masked">
+                                        </div>
+                                    </div>
+                                    <div class="brief">
+                                        <div class="title">
+                                            <img src="../static/images/06.jpg" width="300" height="500"/>
+                                            <h3>專案管理</h3>
+                                            <h3>Project Manager</h3>
+                                        </div>
+                                        <div class="name" itemprop="name">趙楠楠</div>
+                                        <div class="summary" itemprop="description">
+                                            <p>
+                                                在我的掌控下，沒有專案超時的狀況會發生!
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+
+                <div class="modal fade" id="myModal7" tabindex="7" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h2 class="modal-title">陳思樺</h2>
+                            </div>
+                            <div id="7" data-id="陳思樺">
+                                <div class="inner">
+                                    <div class="picture">
+                                        <div class="masked">
+                                        </div>
+                                    </div>
+                                    <div class="brief">
+                                        <div class="title">
+                                            <img src="../static/images/07.jpg" width="300" height="500"/>
+                                            <h3>網頁設計師</h3>
+                                            <h3>Web Designer</h3>
+                                        </div>
+                                        <div class="name" itemprop="name">陳思樺</div>
+                                        <div class="summary" itemprop="description">
+                                            <p>
+                                                我不允許任何不美的事物出現在我眼裡!
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+
+                <div class="modal fade" id="myModal8" tabindex="8" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h2 class="modal-title">劉冠嫄</h2>
+                            </div>
+                            <div id="8" data-id="劉冠嫄">
+                                <div class="inner">
+                                    <div class="picture">
+                                        <div class="masked">
+                                        </div>
+                                    </div>
+                                    <div class="brief">
+                                        <div class="title">
+                                            <img src="../static/images/08.jpg" width="300" height="500"/>
+                                            <h3>專業生醫人才</h3>
+                                            <h3>Professional Biomedical Talent</h3>
+                                        </div>
+                                        <div class="name" itemprop="name">劉冠嫄</div>
+                                        <div class="summary" itemprop="description">
+                                            <p>
+                                                我擁有醫療專業知識與大數據技能，在這個領域捨我其誰!
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+
+                <div class="modal fade" id="myModal9" tabindex="9" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h2 class="modal-title">鍾弦臻</h2>
+                            </div>
+                            <div id="9" data-id="鍾弦臻">
+                                <div class="inner">
+                                    <div class="picture">
+                                        <div class="masked">
+                                        </div>
+                                    </div>
+                                    <div class="brief">
+                                        <div class="title">
+                                            <img src="../static/images/09.jpg" width="300" height="500"/>
+                                            <h3>全能小幫手</h3>
+                                            <h3>Everybody's Angel</h3>
+                                        </div>
+                                        <div class="name" itemprop="name">鍾弦臻</div>
+                                        <div class="summary" itemprop="description">
+                                            <p>
+                                                非典型人才，帶領大家進入不同的境界。
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    </div>
+{% endblock %}

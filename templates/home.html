@@ -1,0 +1,213 @@
+{% load static %}
+<!DOCTYPE html>
+<meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/earlyaccess/notosanstc.css">
+<style>
+
+path {  stroke: #fff; }
+#content{
+    width:900px;
+   
+}
+path:hover {  opacity:0.9; }
+rect:hover {  fill:blue; }
+.axis {  font: 10px sans-serif; }
+.legend tr{    border-bottom:1px solid grey; }
+.legend tr:first-child{    border-top:1px solid grey; }
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {  display: none; }
+.legend{
+    margin-bottom:76px;
+    display:inline-block;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+.legend td{
+    padding:4px 5px;
+    vertical-align:bottom;
+}
+.legendFreq, .legendPerc{
+    align:right;
+    width:50px;
+}
+ .metabar-middle{  }
+</style>
+
+
+
+<body>
+<div class="metabar">
+        <div class="metabar-top">
+            <div class="metabar-left">
+                <a id='course_post' class="metabar-left-item" href="../index" style="font-family:Noto Sans TC;">台灣人口結構分析</a>
+                <a id='course_page' class="metabar-left-item" href="../index2"style="font-family:Noto Sans TC;">台灣肥胖與所得分析</a>
+                <!-- <a class="metabar-left-item" id="not-yet" href="#"><img src="/static/image/metabar_item.png"></a> -->
+            </div>
+            <div class="metabar-middle" >HBD</div>
+   
+        </div>
+    </div>
+
+
+<div id="content">
+
+<style type="text/css">
+        .mask {
+            position: absolute;
+            background-color: rgba(0,0,0,.6);
+            width: 100%;
+            height: 725px;
+            z-index: 400;
+        }
+        .title {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateX(0px) translateY(-50%);
+            text-align: center;
+            color: #fff;            
+            z-index: 500;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .title .main {
+            font-size: 70px;
+            letter-spacing: 20px;
+            margin-bottom: 10px;
+        }
+        .title .line {
+            position: relative;
+            width: 85%;
+            border-top: solid 2px #fff;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-name: fold;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+        }
+        @keyframes fold {
+            from {
+                width: 0%;
+            }
+            to {
+                width: 85%;
+            }
+        }
+        .title .sub {
+            position: relative;
+            width: 85%;
+            padding: 15px;
+            font-size: 50px;
+            letter-spacing: 20px;
+            left: 50%;
+            visibility: hidden;
+            transform: translateX(-50%);
+            animation-name: fadeDown;
+            animation-duration: 1s;
+            animation-delay: 2s;
+            animation-fill-mode: forwards;
+        }
+        @keyframes fadeDown {
+            from {
+                transform: translateX(-50%) translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(-50%) translateY(0px);
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+        .image {
+            overflow: hidden;
+		
+            height: 725px;
+        }
+	
+        /*.cover {
+            width: 100%;
+            display: none;
+            animation-name: fade;
+            animation-duration: 10s;
+            animation-fill-mode: forwards;
+        }*/
+        .cover {
+            background-image: url('/static/images/team1.jpg');
+            height: 80%;
+            width: 100%;
+            background-size: Cover;
+            display: block;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            display: none;
+            animation-name: fade;
+            animation-duration: 10s;
+            animation-fill-mode: forwards;
+        }
+        @keyframes fade {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: .1;
+            }
+        }
+        .img1 {
+            background-image: url('/static/images/1.png');
+        }
+        .img2 {
+            background-image: url('/static/images/cover1.jpg');   
+        }
+        .active {
+            display: block;
+        }
+    </style>
+	
+    <div class="image">
+        <div id="1" class="cover img1 active"></div>
+        <div id="2" class="cover img2"></div>
+        <div class="title">
+            <div class="main" >Health Platform</div>
+            <div class="line"></div>
+            <div class="sub" >Enjoy Your Life</div>
+        </div> 
+		
+        <div class="mask"></div>
+        <!-- <img id="1" class="cover" src="/static/image/cover1.jpg" style="transform: translateY(-250px);"> -->
+        <!-- <img id="2" class="cover"  src="/static/image/cover2.jpg" style="transform: translateY(-30px);"> -->
+        <!-- <img id="3" class="cover"  src="/static/image/cover3.jpg" style="transform: translateY(-30px);"> -->
+</div>
+
+    <script type="text/javascript">
+        $('#1').show()
+        var amount = $('div.cover').length
+        setInterval( 
+            function() {
+                var x = $('.cover.active');
+                var next = x.next();
+                if (next[0].className === 'title') {
+                    next = $('.img1');
+                }
+                x.removeClass('active');
+                next.addClass('active');
+            }
+        , 10000 );
+        // setInterval(function() {
+        //     $('.cover').toggle()
+        //     console.log(id)
+        // }, 500)
+    </script>
+
+</body>
+
